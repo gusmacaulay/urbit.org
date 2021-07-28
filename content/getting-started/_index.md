@@ -56,7 +56,7 @@ Or to install `snap` for your distribution, snapcraft provides [installation ins
   }
   .os .tab {
     display: none;
-    padding: 1rem;
+    margin-top: 1rem;
     width: 100%;
     max-width: 100%;
   }

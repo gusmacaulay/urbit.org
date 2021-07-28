@@ -94,3 +94,10 @@
   font-size: 20px;
   @apply py-2 ml-6 text-base md:text-lg lg:text-xl;
 }
+
+.markdown blockquote {
+  @apply border-l-4 border-deepWall pl-6 italic;
+}
+.markdown blockquote cite {
+  @apply not-italic font-semibold;
+}

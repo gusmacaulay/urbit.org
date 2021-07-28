@@ -1,7 +1,7 @@
 +++
 title = "Urbit OS"
 description = "What Urbit should feel like to an everyday user"
-weight = 1
+weight = 2
 [extra]
 flatten_pagination = "true"
 hide_next_title = "true"

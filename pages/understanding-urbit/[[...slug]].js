@@ -4,10 +4,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import classnames from "classnames";
 import { join } from "path";
-import { buildPageTree, getPage } from "../../lib/lib";
+import {
+  buildPageTree,
+  getPage,
+  getPreviousPost,
+  getNextPost,
+} from "../../lib/lib";
 import Markdown from "../../components/Markdown";
 import ContentArea from "../../components/ContentArea";
 import Sidebar from "../../components/Sidebar";
+import Pagination from "../../components/Pagination";
 import markdownStyles from "../../styles/markdown.module.css";
 import { decode } from "html-entities";
 
@@ -65,6 +71,8 @@ export default function UnderstandingLayout({
   params,
   search,
   markdown,
+  previousPost,
+  nextPost,
 }) {
   return (
     <>
@@ -87,6 +95,36 @@ export default function UnderstandingLayout({
               dangerouslySetInnerHTML={{ __html: decode(markdown) }}
             ></article>
           </div>
+          <div className="flex justify-between mt-16">
+            {previousPost === null ? (
+              <div className={""} />
+            ) : (
+              <Pagination
+                previous
+                title="Previous Post"
+                post={previousPost}
+                className=""
+                section={join(
+                  "understanding-urbit",
+                  params.slug?.slice(0, -1).join("/")
+                )}
+              />
+            )}
+            {nextPost === null ? (
+              <div className={""} />
+            ) : (
+              <Pagination
+                next
+                title="Next Post"
+                post={nextPost}
+                className=""
+                section={join(
+                  "understanding-urbit",
+                  params.slug?.slice(0, -1).join("/")
+                )}
+              />
+            )}
+          </div>
         </ContentArea>
       </div>
     </>
@@ -107,9 +145,25 @@ export async function getStaticProps({ params }) {
     )
   );
 
+  const previousPost =
+    getPreviousPost(
+      params.slug?.slice(-1).join("") || "understanding-urbit",
+      ["title", "slug", "weight"],
+      join("understanding-urbit", params.slug?.slice(0, -1).join("/") || "/"),
+      "weight"
+    ) || null;
+
+  const nextPost =
+    getNextPost(
+      params.slug?.slice(-1).join("") || "understanding-urbit",
+      ["title", "slug", "weight"],
+      join("understanding-urbit", params.slug?.slice(0, -1).join("/") || "/"),
+      "weight"
+    ) || null;
+
   const markdown = await Markdown({ post: { content: content } });
 
-  return { props: { posts, data, markdown, params } };
+  return { props: { posts, data, markdown, params, previousPost, nextPost } };
 }
 
 export async function getStaticPaths() {

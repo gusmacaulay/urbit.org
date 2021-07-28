@@ -1,7 +1,7 @@
 +++
 title = "Urbit ID"
 description = "An overview of the Urbit ID system"
-weight = 2
+weight = 3
 [extra]
 flatten_pagination = "true"
 hide_next_title = "true"

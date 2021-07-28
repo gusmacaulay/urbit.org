@@ -1,7 +1,7 @@
 +++
 title = "People + History"
 description = "Where we've been and were we are now"
-weight = 5
+weight = 6
 [extra]
 flatten_pagination = "true"
 hide_next_title = "true"

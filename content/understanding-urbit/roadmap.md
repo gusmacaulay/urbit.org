@@ -1,7 +1,7 @@
 +++
 title = "Roadmap: OS 1 -> OS N"
 description = "The core ideas that Urbit is built around"
-weight = 4
+weight = 5
 [extra]
 flatten_pagination = "true"
 hide_next_title = "true"
