@@ -113,11 +113,14 @@ That's everything we need for now.
 
 ## Install
 
-Let's spin up a fakezod in which we can install our desk:
+Let's spin up a fakezod in which we can install our desk, by default a fakezod will be out of date, so we need to bootstrap with a pill from our urbit-git repo. the pills are stored in git lfs:
 
 ```
-[user@host hello]$ cd ~/piers/fake
-[user@host fake]$ urbit -F zod
+[user@host hello]$ cd ~/urbit-git
+[user@host urbit-git]$ git lfs install
+[user@host urbit-git]$ git lfs pull
+[user@host urbit-git]$ cd ~/piers/fake
+[user@host fake]$ urbit -F zod -B ~/urbit-git/bin/multi-brass.pill
 ```
 
 Once our fakezod is booted, we'll need to create a new `%hello` desk for our app and mount it. We can do this in the dojo like so:
